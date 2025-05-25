@@ -3,6 +3,7 @@ from constants import *
 from player import *
 from asteroid import *
 from asteroidfield import *
+from shot import *
 import sys
 
 def main():
@@ -38,6 +39,9 @@ def main():
         for u in updatable:
             u.update(dt)
         for a in asteroids:
+            for s in shots:
+                if s.collisioncheck(a):
+                    a.split()
             if player.collisioncheck(a):
                 sys.exit("Game over!")
         pygame.display.flip()
